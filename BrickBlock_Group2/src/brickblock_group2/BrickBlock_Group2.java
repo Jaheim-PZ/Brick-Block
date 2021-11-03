@@ -5,33 +5,53 @@
  */
 package brickblock_group2;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
 public class BrickBlock_Group2 {
 
-public static double brickLength = 0;
-public static double brickWidth = 0;
+private static final double BRICKDEPTH = 3.625;
+private static final double BRICKWIDTH = 2.25;
+private static final double BRICKHEIGHT = 7.625;
+public static double modularBrick = BRICKDEPTH * BRICKWIDTH * BRICKHEIGHT; 
 public static double morterSpace = 0; 
 public static String personName = "";
 public static String personEmail = "";
 public static String personOccupation = "";
 public static double personPhoneNumber = 0; 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {   
+ 
      fullProgramMenu();
     }
- public static void brickArea()
+
+  private static void openIntro()
+     {
+        JOptionPane.showMessageDialog(null, "Hello");
+
+        personName = JOptionPane.showInputDialog("What is your name?");
+
+        JOptionPane.showMessageDialog(null, "My name is " + personName);
+
+        JOptionPane.showMessageDialog(null, "Hello! " + personName);
+
+        personOccupation = JOptionPane.showInputDialog("What is your occupation " + personOccupation);
+     }
+ public static void endingGreeting()
  {
-  
+ 
  }
+
  public static void personalInformation()
  {
   
-  personName = JOptionPane.showInputDialog("What is your Name:");
+  //personName = JOptionPane.showInputDialog("What is your Name:");
   personEmail = JOptionPane.showInputDialog("What is your Email:");
-  personOccupation = JOptionPane.showInputDialog("What is your Occupation:");  
+  //personOccupation = JOptionPane.showInputDialog("What is your Occupation:");  
   personPhoneNumber = Double.parseDouble(JOptionPane.showInputDialog
        (null, "What is your Phone Number:"));
  
@@ -39,7 +59,10 @@ public static double personPhoneNumber = 0;
 
  // Looped menu
     private static void fullProgramMenu()
-    {
+    {  
+     openIntro();
+     personalInformation();   
+        
     String[] choices = {"1. BrickBlock ", "2. Personal Measurements ", 
                     "3. Price calculator", "4. Quit"};
 
@@ -108,9 +131,28 @@ while (!menu.equals("4. Quit")) {
         
     }
        private static void userMeasurements() {
+           
+           //I WANT TO CHANGE
         
     }
+        public static void printBillToFile() throws IOException
+    {
+     try
+    {
+         try (FileWriter myOutPutFile = new FileWriter(personEmail + ".txt")) {
+             myOutPutFile.write(personName  + "\n");
+             
+             
+            
+         }
+        System.out.println("You did it");
     }
+     catch (IOException e)
+     {
+      System.out.print("An error occured");
+     }
+    }
+}
 
  
 
